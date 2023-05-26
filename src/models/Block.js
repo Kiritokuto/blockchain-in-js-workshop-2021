@@ -1,30 +1,32 @@
-import sha256 from 'crypto-js/sha256.js'
-export const DIFFICULTY = 3
+import sha256 from 'crypto-js/sha256.js';
+
+export const DIFFICULTY = 2
 
 class Block {
-  // 1. 完成构造函数及其参数
-  constructor(blockchain,previousHash,height,hash,nonce) {
-    this.blockchain=blockchain;
-    this.previousHash=previousHash;
-    this.height=height
-    this.hash=hash
-    this.nonce=nonce
+  constructor(blockchain, prevHash, height, data, miner = null) {
+    this.blockchain = blockchain
+    this.prevHash = prevHash
+    this.height = height
+    this.hash = sha256(height + prevHash + data).toString()
+    this.nonce = 0
+    this.data = data
+    this.miner = miner
+    this.utxoPool = blockchain.utxoPool.clone()
+
+    if (miner) {
+      this.utxoPool.addUTXO(miner, 12.5)
+    }
   }
-  
+
   isValid() {
-    const hash=this.calculateHash()
-    return hash.substring(0,DIFFICULTY) == '0'.repeat(DIFFICULTY)
+    const target = Array(DIFFICULTY + 1).join("0")
+    return this.hash.substring(0, DIFFICULTY) === target
   }
 
-  calculateHash(){
-    return sha256(
-      this.previousHash+this.height+this.nonce
-    ).toString()
-   }
-
-   //设置随机数
   setNonce(nonce) {
-    this.nonce=nonce}
+    this.nonce = nonce
+    this.hash = sha256(this.height + this.prevHash + this.data + nonce).toString()
+  }
 }
 
 export default Block
