@@ -70,8 +70,8 @@ https://github.com/CUITBlockchain/blockchain-in-js-workshop-2021/commit/25f3a0d8
 
 > 将截图上传至网盘，放入链接即可
 
-![https://s3.bmp.ovh/imgs/2023/05/26/86773269561ed558.png](链接)
-![https://s3.bmp.ovh/imgs/2023/05/26/623ed94eae4508d7.png]
+![3](https://s3.bmp.ovh/imgs/2023/05/26/623ed94eae4508d7.png)
+![4](https://s3.bmp.ovh/imgs/2023/05/26/86773269561ed558.png)
 
 
 ### 主观与讨论题内容
